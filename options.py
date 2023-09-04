@@ -1,0 +1,33 @@
+import argparse
+
+def args_parser():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--num_exp', type=int, default=3, help='number of experiments')
+    parser.add_argument('--print_txt', type=bool, default=False, help='print txt')
+    parser.add_argument('--num_classes', type=int, default=10, help='number of classes')
+    parser.add_argument('--lr_w', type=float, default=0.01, help='learning rate for warming up')
+    parser.add_argument('--lr', type=float, default=0.01, help='learning rate for training')
+    parser.add_argument('--lr_f', type=float, default=5e-4, help='learning rate for fine-tuning')
+    parser.add_argument('--result_dir', type=str, help='dir to save result txt files', default='results')
+    parser.add_argument('--noise_rate', type=float, help='overall corruption rate', default=0.3)
+    parser.add_argument('--dataset', type=str, help='cifar10, svhn', default='cifar10')
+    parser.add_argument('--round1', type=int, help='number of rounds for warming up', default=15)
+    parser.add_argument('--round2', type=int, help='number of rounds for training transition matrix estimation', default=50)
+    parser.add_argument('--round3', type=int, help='number of rounds for fine-tuning', default=35)
+    parser.add_argument('--local_ep', type=int, help='number of local epochs', default=2)
+    parser.add_argument('--local_ep2', type=int, help='number of local epochs', default=1)
+    parser.add_argument('--seed', type=int, default=1)
+    parser.add_argument('--print_freq', type=int, default=100)
+    parser.add_argument('--num_workers', type=int, help='how many subprocesses to use for data loading', default=8)
+    parser.add_argument('--gpu', type=int, help='ind of gpu', default=0)
+    parser.add_argument('--weight_decay', type=float, default=5e-4)
+    parser.add_argument('--momentum', type=int, help='momentum', default=0.9)
+    parser.add_argument('--batch_size', type=int, help='batch_size', default=32)
+    parser.add_argument('--split_percentage', type=float, help = 'train and validation', default=0.95)
+    parser.add_argument('--tau', type=float, help='threshold', default=0.65)
+    parser.add_argument('--num_clients', type=int, help = 'number of total clients', default=10)
+    parser.add_argument('--frac', type=float, default=1.0, help="fraction of selected clients")
+    parser.add_argument('--iid', type=bool, help='i.i.d. or non-i.i.d.', default=True)
+
+    return parser.parse_args()
